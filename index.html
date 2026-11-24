@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101114"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css"><title>WorkLedger</title>
+</head>
+<body>
+<header><div class="brand">WorkLedger</div><div class="sub">Evidence práce a fakturace</div></header>
+<nav><button data-tab="work" class="active">Práce</button><button data-tab="clients">Odběratelé</button><button data-tab="period">Období</button></nav>
+<main>
+<section id="work" class="tab active">
+<h1>Nový záznam</h1>
+<form id="workForm">
+<label>Datum<input id="date" type="date" required></label>
+<label>Odběratel<select id="clientSelect" required></select></label>
+<div class="grid"><label>Od<input id="from" type="time" value="08:00" required></label><label>Do<input id="to" type="time" value="16:00" required></label></div>
+<label>Přestávka (min)<input id="break" type="number" min="0" value="30"></label>
+<label>Popis práce<input id="note" placeholder="Např. montáž, servis…"></label>
+<button class="primary">Uložit záznam</button>
+</form><h2>Poslední záznamy</h2><div id="entries"></div>
+</section>
+<section id="clients" class="tab"><h1>Odběratelé</h1>
+<form id="clientForm"><label>Název odběratele<input id="clientName" required placeholder="Název firmy"></label><label>Hodinová sazba (Kč)<input id="rate" type="number" min="0" step="1" required placeholder="Např. 350"></label><button class="primary">Přidat odběratele</button></form><div id="clientList"></div>
+</section>
+<section id="period" class="tab"><h1>Fakturační období</h1><div class="grid"><label>Od<input id="periodFrom" type="date"></label><label>Do<input id="periodTo" type="date"></label></div><button id="calculate" class="primary">Vypočítat přehled</button><div id="summary"></div><button id="csv" class="secondary">Exportovat CSV</button><button id="backup" class="secondary">Záloha dat (JSON)</button><label class="secondary import">Obnovit zálohu JSON<input id="restore" type="file" accept="application/json"></label></section>
+</main><footer>Data se ukládají pouze v tomto zařízení a prohlížeči.</footer>
+<script src="app.js"></script>
+</body></html>
